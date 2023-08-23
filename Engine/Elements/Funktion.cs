@@ -8,5 +8,11 @@ namespace Engine.Elements
 {
     internal class Funktion
     {
+        #region Properties
+        #endregion
+
+        #region Konstruktoren
+        public Funktion() { }
+        #endregion
     }
 }

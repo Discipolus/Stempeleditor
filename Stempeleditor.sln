@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stempeleditor", "Stempeleditor.csproj", "{99B57153-92D6-4064-B74A-F10838545E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stempeleditor", "Stempeleditor\Stempeleditor.csproj", "{99B57153-92D6-4064-B74A-F10838545E60}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A2B1343-2FF9-4D21-8517-4C6DAF4451CD} = {7A2B1343-2FF9-4D21-8517-4C6DAF4451CD}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{7A2B1343-2FF9-4D21-8517-4C6DAF4451CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "Engine\Engine.csproj", "{7A2B1343-2FF9-4D21-8517-4C6DAF4451CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

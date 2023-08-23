@@ -9,12 +9,16 @@ namespace Engine
 {
     internal class Stempel
     {
-        private List<Stempelverfügung>? _stempelverfügungen;
+        #region Properties
         public List<Stempelverfügung>? Stempelverfügungen { get; set; }
+        #endregion
+
+        #region Konstruktoren
         public Stempel() : this(new List<Stempelverfügung>()) { }
         public Stempel(List<Stempelverfügung> stempelverfügungen)
         {
-            _stempelverfügungen = stempelverfügungen;
+            Stempelverfügungen = stempelverfügungen;
         }
+        #endregion
     }
 }
