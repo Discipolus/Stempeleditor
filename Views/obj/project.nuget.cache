@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "JZuHKCDDm+FMhIbifh84DUqGvyXEV7urZx3s/kHUbGg57OTsSt28lBb4jKRVHVamlgpluCgteCZtmFhcrgaCkQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Vincent\\source\\repos\\Stempeleditor\\Views\\Views.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Vincent\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512",
+    "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\Vincent\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
