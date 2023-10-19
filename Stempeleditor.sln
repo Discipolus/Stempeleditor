@@ -16,7 +16,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Views", "Views\Views.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{BB34DB03-4AB7-44C4-83C1-03C6290AFCCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelsInterfaces", "ViewModelsInterfaces\ViewModelsInterfaces.csproj", "{A143E471-AD1A-4315-AEC5-8DB796F2AF86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModelsInterfaces", "ViewModelsInterfaces\ViewModelsInterfaces.csproj", "{A143E471-AD1A-4315-AEC5-8DB796F2AF86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Klassendiagramm", "Klassendiagramm", "{B9656141-02CB-4F2F-A2C7-2C5506E53283}"
+	ProjectSection(SolutionItems) = preProject
+		Struktur\Klassendiagramm.drawio = Struktur\Klassendiagramm.drawio
+		Struktur\Klassendiagramm.drawio.png = Struktur\Klassendiagramm.drawio.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

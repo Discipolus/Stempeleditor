@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.Elements
 {
-    internal class Stempelverfügung
+    public class Stempelverfügung
     {
         #region Properties
         public Guid Id { get; set; }

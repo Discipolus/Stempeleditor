@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Elements
 {
-    internal class Platzhalter
+    public class Platzhalter
     {
         #region Properties
         public int Id { get; set; }

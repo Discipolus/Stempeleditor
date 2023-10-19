@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Elements
 {
-    internal class Funktion
+    public class Funktion
     {
         #region Properties
         #endregion
