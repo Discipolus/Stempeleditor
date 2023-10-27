@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace ViewModelsInterfaces
 {    
-    public interface IMainWindowViewModel : INotifyPropertyChanged, INotifyPropertyChanging
+    public partial interface IMainWindowViewModel : INotifyPropertyChanged, INotifyPropertyChanging
     {
+
+        //readonly IStempelEditierenViewModel stempelEditierenVm;
+        //readonly IUebersichtViewModel uebersichtVm;
         [RelayCommand()]
         public abstract void UebersichtAufrufen();
         [RelayCommand()]

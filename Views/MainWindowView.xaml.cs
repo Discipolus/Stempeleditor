@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,14 @@ namespace Views
     /// </summary>
     public partial class MainWindowView : Window
     {
-        public MainWindowView(IMainWindowViewModel vm)
+        public MainWindowView()
         {
             InitializeComponent();
-            this.DataContext = vm;
+
+            MainWindowViewModel mainWindowViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<MainWindowViewModel>();
+
+            // Setzen Sie den DataContext
+            this.DataContext = mainWindowViewModel;
         }
     }
 }

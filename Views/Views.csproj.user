@@ -13,6 +13,9 @@
     <Compile Update="StempelEditierenView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="StempelElemente\Stempel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UebersichtView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StempelEditierenView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StempelElemente\Stempel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Theme\MenuButtonTheme.xaml">

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Vincent\source\repos\Stempeleditor\Views\App.xaml
-5-481969155
+6-1282398473
 
-5-1145165174
-199-1670276302
-MainWindowView.xaml;StempelEditierenView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;UebersichtView.xaml;
+6-1959574209
+2041449986534
+MainWindowView.xaml;StempelEditierenView.xaml;StempelElemente\Stempel.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;UebersichtView.xaml;
 
 False
 

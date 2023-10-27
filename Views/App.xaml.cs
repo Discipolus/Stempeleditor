@@ -16,20 +16,34 @@ namespace Views
     /// </summary>
     public partial class App : Application
     {
+        public IServiceProvider ServiceProvider { get; private set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            ServiceCollection services = new ServiceCollection();
-            services.AddScoped<MainWindowView>();
-            services.AddScoped<StempelEditierenView>();
-            services.AddScoped<UebersichtView>();
-            services.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            services.AddScoped<IUebersichtViewModel, UebersichtViewModel>();
-            services.AddScoped<IStempelEditierenViewModel, StempelEditierenViewModel>();
+            ServiceProvider = ConfigureServices()!;
+            //ServiceCollection services = new ServiceCollection();
+            //services.AddScoped<MainWindowView>();
+            //services.AddScoped<StempelEditierenView>();
+            //services.AddScoped<UebersichtView>();
+            //services.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
+            //services.AddScoped<IUebersichtViewModel, UebersichtViewModel>();
+            //services.AddScoped<IStempelEditierenViewModel, StempelEditierenViewModel>();
 
-            ServiceProvider provider = services.BuildServiceProvider();
-            MainWindowView mw = provider.GetService<MainWindowView>()!;
-            mw.Show();
+            //ServiceProvider provider = services.BuildServiceProvider();
+            //MainWindowView mw = provider.GetService<MainWindowView>()!;
+            //mw.Show();
+        }
+        public IServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+
+            // Registrieren Sie Ihre Dienste und ViewModels
+            services.AddTransient<IStempelEditierenViewModel, StempelEditierenViewModel>();
+            services.AddTransient<IUebersichtViewModel, UebersichtViewModel>();
+            services.AddTransient<IStempelViewModel, StempelViewModel>();
+            services.AddTransient<MainWindowViewModel>();
+
+            return services.BuildServiceProvider();
         }
     }
 }

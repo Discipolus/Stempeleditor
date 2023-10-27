@@ -12,59 +12,33 @@ using ViewModelsInterfaces;
 
 namespace ViewModels
 {
- //   [INotifyPropertyChanged]
-    public partial class MainWindowViewModel : ObservableObject, IMainWindowViewModel
-    {
-        //public RelayCommand UebersichtViewCommand { get; set; }
-        //public RelayCommand StempelEditierenViewCommand { get; set; }
+    public partial class MainWindowViewModel : ObservableObject, IMainWindowViewModel 
+    { 
+        [ObservableProperty] object currentView;
+        [ObservableProperty] IStempelEditierenViewModel stempelEditierenVm;
+        [ObservableProperty] IUebersichtViewModel uebersichtVm;        
 
-        //public UebersichtViewModel UebersichtVM { get; set; }
-        //public StempelEditierenViewModel StempelEditierenVM { get; set; }
-
-        [ObservableProperty] private object currentView;
-
-        //private object _currentView;
-
-        //public object CurrentView
-        //{
-        //    get { return _currentView; }
-        //    set
-        //    {
-        //        _currentView = value;                
-        //        OnPropertyChanged(new PropertyChangedEventArgs(nameof(CurrentView)));
-        //    }
-        //}
-
-        private readonly IStempelEditierenViewModel stempelEditierenVm;
-        private readonly IUebersichtViewModel uebersichtVm;
-
+        //public MainWindowViewModel() { }
         public MainWindowViewModel(IStempelEditierenViewModel stempelEditVm, IUebersichtViewModel uebersichtVm)
         {
-            this.stempelEditierenVm = stempelEditVm;
-            this.uebersichtVm = uebersichtVm;
-            //UebersichtVM = new UebersichtViewModel();
-            //StempelEditierenVM = new StempelEditierenViewModel();
-            //CurrentView = UebersichtVM;
-
-            //UebersichtViewCommand = new RelayCommand(o =>
-            //{
-            //    CurrentView = UebersichtVM;
-            //});
-            //StempelEditierenViewCommand = new RelayCommand(o =>
-            //{
-            //    CurrentView = StempelEditierenVM;
-            //});
+            if (stempelEditVm == null || uebersichtVm == null)
+            {
+                throw new ArgumentNullException("Interfaces null");
+            }
+            this.StempelEditierenVm = stempelEditVm!;
+            this.UebersichtVm = uebersichtVm!;
+            UebersichtAufrufen();
         }
-        //[RelayCommand()]
+        [RelayCommand()]
         public void UebersichtAufrufen()
         {
-            currentView = uebersichtVm;
+            CurrentView = UebersichtVm!;
         }
 
-        //[RelayCommand()]
+        [RelayCommand()]
         public void StempelEditierenAufrufen() 
         {
-            currentView = stempelEditierenVm;
+            CurrentView = StempelEditierenVm;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModels;
 
 namespace Views
 {
@@ -23,6 +25,10 @@ namespace Views
         public StempelEditierenView()
         {
             InitializeComponent();
+            StempelEditierenViewModel stempelEditierenViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<StempelEditierenViewModel>();
+
+            // Setzen Sie den DataContext
+            this.DataContext = stempelEditierenViewModel;
         }
     }
 }

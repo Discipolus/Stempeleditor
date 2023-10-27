@@ -8,7 +8,13 @@ using ViewModelsInterfaces;
 
 namespace ViewModels
 {
-    public class StempelEditierenViewModel : ObservableObject, IStempelEditierenViewModel
+    public partial class StempelEditierenViewModel : ObservableObject, IStempelEditierenViewModel
     {
+        [ObservableProperty] IStempelViewModel stempelview;
+
+        public StempelEditierenViewModel(IStempelViewModel vm)
+        {
+            stempelview = vm;
+        }
     }
 }

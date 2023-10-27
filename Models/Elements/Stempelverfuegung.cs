@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.Elements
 {
-    public class Stempelverfügung
+    public class Stempelverfuegung
     {
         #region Properties
         public Guid Id { get; set; }
@@ -21,8 +21,8 @@ namespace Models.Elements
         #endregion
 
         #region Konstruktoren
-        public Stempelverfügung() : this(Guid.Empty, "", false, Color.Empty, false, "", new List<Platzhalter>(), new List<Funktion>()) { }
-        public Stempelverfügung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, string beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
+        public Stempelverfuegung() : this(Guid.Empty, "", false, Color.Empty, false, "", new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, string beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
         {
             Id = id;
             Name = name;

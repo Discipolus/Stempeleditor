@@ -9,12 +9,12 @@ namespace Models.Elements
     internal class Stempel
     {
         #region Properties
-        public List<Stempelverfügung>? Stempelverfügungen { get; set; }
+        public List<Stempelverfuegung>? Stempelverfügungen { get; set; }
         #endregion
 
         #region Konstruktoren
-        public Stempel() : this(new List<Stempelverfügung>()) { }
-        public Stempel(List<Stempelverfügung> stempelverfügungen)
+        public Stempel() : this(new List<Stempelverfuegung>()) { }
+        public Stempel(List<Stempelverfuegung> stempelverfügungen)
         {
             Stempelverfügungen = stempelverfügungen;
         }
