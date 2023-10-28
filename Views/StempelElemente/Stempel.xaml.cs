@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModelsInterfaces;
 
-namespace Stempeleditor
+namespace Views.StempelElemente
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik für Stempel.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Stempel : UserControl
     {
-        public MainWindow()
+        public Stempel()
         {
             InitializeComponent();
+            IStempelViewModel stempelViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IStempelViewModel>();
+
+            // Setzen Sie den DataContext
+            this.DataContext = stempelViewModel;
         }
     }
 }
