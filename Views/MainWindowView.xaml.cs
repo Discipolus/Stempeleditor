@@ -26,7 +26,7 @@ namespace Views
         {
             InitializeComponent();
 
-            MainWindowViewModel mainWindowViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<MainWindowViewModel>();
+            IMainWindowViewModel mainWindowViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IMainWindowViewModel>();
 
             // Setzen Sie den DataContext
             this.DataContext = mainWindowViewModel;

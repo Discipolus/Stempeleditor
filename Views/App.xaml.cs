@@ -17,32 +17,21 @@ namespace Views
     public partial class App : Application
     {
         public IServiceProvider ServiceProvider { get; private set; }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             ServiceProvider = ConfigureServices()!;
-            //ServiceCollection services = new ServiceCollection();
-            //services.AddScoped<MainWindowView>();
-            //services.AddScoped<StempelEditierenView>();
-            //services.AddScoped<UebersichtView>();
-            //services.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            //services.AddScoped<IUebersichtViewModel, UebersichtViewModel>();
-            //services.AddScoped<IStempelEditierenViewModel, StempelEditierenViewModel>();
-
-            //ServiceProvider provider = services.BuildServiceProvider();
-            //MainWindowView mw = provider.GetService<MainWindowView>()!;
-            //mw.Show();
         }
         public IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
-            // Registrieren Sie Ihre Dienste und ViewModels
-            services.AddTransient<IStempelEditierenViewModel, StempelEditierenViewModel>();
+            // Registrieren Sie Ihre Dienste und ViewModels. Transient wird erstellt, wenn es angefordert wird. Scoped wird einmal pro Anforderung erstellt. Singleton wird einmal erstellt.
+            services.AddSingleton<IStempelEditierenViewModel, StempelEditierenViewModel>();
             services.AddTransient<IUebersichtViewModel, UebersichtViewModel>();
             services.AddTransient<IStempelViewModel, StempelViewModel>();
-            services.AddTransient<MainWindowViewModel>();
-
+            services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
             return services.BuildServiceProvider();
         }
     }

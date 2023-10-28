@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModels;
+using ViewModelsInterfaces;
 
 namespace Views.StempelElemente
 {
@@ -25,7 +25,7 @@ namespace Views.StempelElemente
         public Stempel()
         {
             InitializeComponent();
-            StempelViewModel stempelViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<StempelViewModel>();
+            IStempelViewModel stempelViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IStempelViewModel>();
 
             // Setzen Sie den DataContext
             this.DataContext = stempelViewModel;

@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModels;
+using ViewModelsInterfaces;
 
 namespace Views
 {
@@ -25,7 +25,7 @@ namespace Views
         public UebersichtView()
         {
             InitializeComponent();
-            UebersichtViewModel uebersichtViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<UebersichtViewModel>();
+            IUebersichtViewModel uebersichtViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IUebersichtViewModel>();
 
             // Setzen Sie den DataContext
             this.DataContext = uebersichtViewModel;
