@@ -23,7 +23,7 @@ namespace Views
             base.OnStartup(e);
             ServiceProvider = ConfigureServices()!;
         }
-        public IServiceProvider ConfigureServices()
+        public static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 

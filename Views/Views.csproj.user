@@ -30,6 +30,9 @@
     <Page Update="StempelElemente\Stempel.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Theme\ActionButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>

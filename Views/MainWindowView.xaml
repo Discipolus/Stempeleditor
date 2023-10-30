@@ -33,17 +33,11 @@
                        />
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Übersicht"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
                              Command="{Binding UebersichtAufrufenCommand}"
                              />
                 <RadioButton Content="Stempel Editieren"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding StempelEditierenAufrufenCommand}"
                              />
@@ -53,6 +47,11 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              />-->
+                <RadioButton Content="Schließen"
+                        Style="{StaticResource MenuButtonTheme}"
+                        Command="{Binding SchliesseProgrammCommand}"
+                        Click="CloseApp"
+                        />
             </StackPanel>
             <TextBox Width="250"
                      Height="40"

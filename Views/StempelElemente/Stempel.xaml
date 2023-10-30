@@ -30,32 +30,32 @@
         <Label Grid.Row="0">
             <TextBlock Text="ID"/>
         </Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding tb_guid}"/>
         
         <Label Grid.Row="1">
             <TextBlock Text="Name"/>
         </Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding tb_name}"/>
         
         <Label Grid.Row="2">
             <TextBlock Text="Erstellinformationen anzeigen?"/>
         </Label>
-        <CheckBox Grid.Row="2" Grid.Column="1"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding erstellinformationen}"/>
 
         <Label Grid.Row="2" Grid.Column="2">
             <TextBlock Text="Aufgabe Erzeugen?"/>
         </Label>
-        <CheckBox Grid.Row="2" Grid.Column="3"/>
+        <CheckBox Grid.Row="2" Grid.Column="3" IsChecked="{Binding aufgabeErzeugen}"/>
 
         <Label Grid.Row="3">
             <TextBlock Text="Farbe"/>
         </Label>
-        <toolkit:ColorPicker Grid.Row="3" Grid.Column="1"/>
+        <toolkit:ColorPicker Grid.Row="3" Grid.Column="1" SelectedColor="{Binding farbe}"/>
 
         <Label Grid.Row="5">
             <TextBlock Text="Beschreibung"/>
         </Label>
-        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <toolkit:RichTextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Document="{Binding rtb_beschreibung}" />
         
         
         <Label Grid.Row="6">

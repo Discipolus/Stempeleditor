@@ -26,10 +26,14 @@ namespace Views
         {
             InitializeComponent();
 
-            IMainWindowViewModel mainWindowViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IMainWindowViewModel>();
-
+            IMainWindowViewModel mainWindowViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IMainWindowViewModel>();            
             // Setzen Sie den DataContext
             this.DataContext = mainWindowViewModel;
+        }
+        //method to close the application
+        private void CloseApp(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

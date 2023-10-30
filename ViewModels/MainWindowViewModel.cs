@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Windows;
 using ViewModelsInterfaces;
 
 namespace ViewModels
@@ -16,7 +17,11 @@ namespace ViewModels
     { 
         [ObservableProperty] object currentView;
         [ObservableProperty] IStempelEditierenViewModel stempelEditierenVm;
-        [ObservableProperty] IUebersichtViewModel uebersichtVm;        
+        [ObservableProperty] IUebersichtViewModel uebersichtVm;
+
+        
+
+        public event EventHandler CloseAppEvent;
 
         //public MainWindowViewModel() { }
         public MainWindowViewModel(IStempelEditierenViewModel stempelEditVm, IUebersichtViewModel uebersichtVm)
@@ -40,5 +45,12 @@ namespace ViewModels
         {
             CurrentView = StempelEditierenVm;
         }
+
+        [RelayCommand()]
+        public void SchliesseProgramm()
+        {            
+            CloseAppEvent?.Invoke(this, EventArgs.Empty);
+        }
+
     }
 }
