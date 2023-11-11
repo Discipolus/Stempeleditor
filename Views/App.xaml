@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Views"
+             xmlns:StempelElemente="clr-namespace:Views.StempelElemente"
              xmlns:viewModel="clr-namespace:ViewModels;assembly=ViewModels"
              StartupUri="MainWindowView.xaml"
              >
@@ -11,6 +12,7 @@
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ActionButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBlockTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:MainWindowViewModel}">
                 <local:MainWindowView/>
@@ -21,8 +23,9 @@
             <DataTemplate DataType="{x:Type viewModel:StempelEditierenViewModel}">
                 <local:StempelEditierenView/>
             </DataTemplate>
-
+            <DataTemplate DataType="{x:Type viewModel:StempelViewModel}">
+                <StempelElemente:Stempel/>
+            </DataTemplate>
         </ResourceDictionary>
-         
     </Application.Resources>
 </Application>

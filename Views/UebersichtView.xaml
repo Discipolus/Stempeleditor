@@ -7,6 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <ListBox ItemsSource="{Binding List}" Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Id}" FontSize="12"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Text="{Binding Beschreibung}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

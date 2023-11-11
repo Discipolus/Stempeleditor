@@ -6,11 +6,9 @@
         xmlns:local="clr-namespace:Views"
         xmlns:viewModel="clr-namespace:ViewModels;assembly=ViewModels"
         mc:Ignorable="d"
-        Height="600" Width="920"
-        WindowStyle="None"
+        Height="600" Width="920"        
         ResizeMode="CanResize"
-        Background="Transparent"
-        AllowsTransparency="True"
+        Background="Transparent"        
         >
 
     <Border Background="#272537"

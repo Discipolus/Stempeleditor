@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Views.StempelElemente"
-             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:viewmodels="clr-namespace:ViewModels;assembly=ViewModels"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"             
              Background="Beige">
@@ -30,32 +29,32 @@
         <Label Grid.Row="0">
             <TextBlock Text="ID"/>
         </Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding tb_guid}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_guid}"/>
         
         <Label Grid.Row="1">
             <TextBlock Text="Name"/>
         </Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding tb_name}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_name}"/>
         
         <Label Grid.Row="2">
             <TextBlock Text="Erstellinformationen anzeigen?"/>
         </Label>
-        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding erstellinformationen}"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Erstellinformationen}"/>
 
         <Label Grid.Row="2" Grid.Column="2">
             <TextBlock Text="Aufgabe Erzeugen?"/>
         </Label>
-        <CheckBox Grid.Row="2" Grid.Column="3" IsChecked="{Binding aufgabeErzeugen}"/>
+        <CheckBox Grid.Row="2" Grid.Column="3" IsChecked="{Binding AufgabeErzeugen}"/>
 
         <Label Grid.Row="3">
             <TextBlock Text="Farbe"/>
         </Label>
-        <toolkit:ColorPicker Grid.Row="3" Grid.Column="1" SelectedColor="{Binding farbe}"/>
+        <toolkit:ColorPicker Grid.Row="3" Grid.Column="1" SelectedColor="{Binding Farbe}"/>
 
         <Label Grid.Row="5">
             <TextBlock Text="Beschreibung"/>
         </Label>
-        <toolkit:RichTextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Document="{Binding rtb_beschreibung}" />
+        <toolkit:RichTextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Rtb_beschreibung}"/>
         
         
         <Label Grid.Row="6">
@@ -64,11 +63,5 @@
         <Label Grid.Row="7">
             <TextBlock Text="Funktionen"/>
         </Label>
-        
-        
-        
-
-        
-        
     </Grid>
 </UserControl>

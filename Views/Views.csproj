@@ -14,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IStorage\IStorage.csproj" />
+    <ProjectReference Include="..\IXMLConverter\IXMLConverter.csproj" />
+    <ProjectReference Include="..\SQLDatabaseConnection\SQLDatabaseConnection.csproj" />
     <ProjectReference Include="..\ViewModelsInterfaces\ViewModelsInterfaces.csproj" />
     <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
+    <ProjectReference Include="..\XMLConverter\XMLConverter.csproj" />
   </ItemGroup>
 
 </Project>

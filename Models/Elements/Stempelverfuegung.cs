@@ -4,25 +4,72 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Models.Elements
 {
     public class Stempelverfuegung
     {
+        private static readonly Color defaultColorKeineAufgabe = ColorTranslator.FromHtml("#FF247835");
+        private static readonly Color defaultColorAufgabe = ColorTranslator.FromHtml("#FF0000FF");
         #region Properties
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        private string name;
+        public string Name 
+        {
+            get => name; 
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("Name darf nicht leer sein");
+                }
+                else
+                {
+                    name = value;
+                }
+            } 
+        }
         public bool ErstellinformationenAnzeigen { get; set; }
-        public Color Farbe { get; set; }
-        public bool AufgabeErzeugen { get; set; }
-        public string Beschreibung { get; set; }
+        private Color farbe;
+        public Color Farbe 
+        {
+            get => farbe;
+            set
+            {
+                if (value != farbe)
+                {
+                    farbe = value;
+                }
+
+            }
+        }
+        private bool aufgabeErzeugen = false;
+        public bool AufgabeErzeugen 
+        {
+            get => aufgabeErzeugen;
+            set
+            {
+                if (value != aufgabeErzeugen)
+                {
+                    aufgabeErzeugen = value;
+                    if (Farbe == defaultColorAufgabe || Farbe == defaultColorKeineAufgabe)
+                    {
+                        Farbe = getDefaultColor();
+                    }                    
+                }
+            }  
+        }
+        //public string Beschreibung { get; set; }
+        public XmlDocument Beschreibung { get; set; }
         public List<Platzhalter> PlatzhalterListe { get; set; } 
         public List<Funktion> Funktionen { get; set; }
         #endregion
 
         #region Konstruktoren
-        public Stempelverfuegung() : this(Guid.Empty, "", false, Color.Empty, false, "", new List<Platzhalter>(), new List<Funktion>()) { }
-        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, string beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
+        public Stempelverfuegung() : this(Guid.Empty, "", false, Color.Empty, false, new XmlDocument(), new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XmlDocument beschreibung) : this(id, name, erstellinformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XmlDocument beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
         {
             Id = id;
             Name = name;
@@ -34,5 +81,16 @@ namespace Models.Elements
             Funktionen = funktionen;
         }
         #endregion
+        private Color getDefaultColor()
+        {
+            if (AufgabeErzeugen)
+            {
+                return defaultColorAufgabe;
+            }
+            else
+            {
+                return defaultColorKeineAufgabe;
+            }
+        }
     }
 }

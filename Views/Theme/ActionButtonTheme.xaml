@@ -4,7 +4,7 @@
        TargetType="{x:Type Button}"
        x:Key="ActionButtonTheme">
         <Style.Setters>
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="Height" Value="30"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Template">
@@ -16,7 +16,6 @@
                             <TextBlock  Text="{TemplateBinding Property=Content}"
                                         VerticalAlignment="Center"
                                         Margin="50,0,0,0"/>
-
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

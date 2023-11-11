@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IStorage\IStorage.csproj" />
+    <ProjectReference Include="..\IXMLConverter\IXMLConverter.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\ViewModelsInterfaces\ViewModelsInterfaces.csproj" />
   </ItemGroup>
 

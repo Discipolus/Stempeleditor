@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace SQLDatabaseConnection
 {
-    internal class SQLDatabase : IStorageService
+    public class SQLDatabase : IStorageService
     {
         #region Properties
         static string server = "";
@@ -60,6 +60,11 @@ namespace SQLDatabaseConnection
         }
 
         public void speicherStempel(string stempel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> ladeStempelListe()
         {
             throw new NotImplementedException();
         }

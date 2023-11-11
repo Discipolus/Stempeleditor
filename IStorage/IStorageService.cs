@@ -10,5 +10,6 @@ namespace IStorage
     {
         public void speicherStempel(string stempel);
         public string ladeStempel();
+        public List<string> ladeStempelListe();
     }
 }
