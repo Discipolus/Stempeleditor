@@ -34,7 +34,6 @@ namespace Views
             // Registrieren Sie Ihre Dienste und ViewModels. Transient wird erstellt, wenn es angefordert wird. Scoped wird einmal pro Anforderung erstellt. Singleton wird einmal erstellt.
             services.AddSingleton<IStempelEditierenViewModel, StempelEditierenViewModel>();
             services.AddSingleton<IUebersichtViewModel, UebersichtViewModel>();
-            services.AddSingleton<IStempelViewModel, StempelViewModel>();
             services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
             services.AddTransient<IStempelListItemViewModel, StempelListItemViewModel>();
             services.AddSingleton<IXMLConverter.IXMLConverter, DummyConverter>();

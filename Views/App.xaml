@@ -23,9 +23,6 @@
             <DataTemplate DataType="{x:Type viewModel:StempelEditierenViewModel}">
                 <local:StempelEditierenView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:StempelViewModel}">
-                <StempelElemente:Stempel/>
-            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

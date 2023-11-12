@@ -13,10 +13,10 @@
     <Compile Update="StempelEditierenView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="StempelElemente\Stempel.xaml.cs">
+    <Compile Update="StempelElemente\StempelListItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="StempelElemente\StempelListItem.xaml.cs">
+    <Compile Update="StempelElemente\UC_FormatBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UebersichtView.xaml.cs">
@@ -30,10 +30,10 @@
     <Page Update="StempelEditierenView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="StempelElemente\Stempel.xaml">
+    <Page Update="StempelElemente\StempelListItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="StempelElemente\StempelListItem.xaml">
+    <Page Update="StempelElemente\UC_FormatBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Theme\ActionButtonTheme.xaml">

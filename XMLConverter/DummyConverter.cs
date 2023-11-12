@@ -21,5 +21,10 @@ namespace XMLConverter
         {
             throw new NotImplementedException();
         }
+
+        string IXMLConverter.IXMLConverter.convertToXml(string rtf)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

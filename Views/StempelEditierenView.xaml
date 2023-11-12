@@ -20,20 +20,17 @@
         <StackPanel Grid.Column="0">
             <Button Content="Neu"
                              Style="{StaticResource ActionButtonTheme}"
-                             Command="{Binding }"
+                             Command="{Binding NeuCommand}"
                              />
             <Button Content="speichern"
                  Style="{StaticResource ActionButtonTheme}"
-                 Command="{Binding }"
+                 Command="{Binding SpeichernCommand}"
                  />
             <Button Content="Abbrechen"
                  Style="{StaticResource ActionButtonTheme}"
-                 Command="{Binding }"
+                 Command="{Binding AbbrechenCommand}"
                  />
         </StackPanel>
-        <!--<ContentControl Grid.Column="1"
-                        Margin="10"
-                        Content="{Binding StempelView}"/>-->
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -55,32 +52,89 @@
             <Label Grid.Row="0">
                 <TextBlock Text="ID"/>
             </Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_guid}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_guid, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" ToolTip="erwartetes Format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"/>
 
             <Label Grid.Row="1">
                 <TextBlock Text="Name" />
             </Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_name}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_name, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="2">
                 <TextBlock Text="Erstellinformationen anzeigen?"/>
             </Label>
-            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Erstellinformationen}"/>
+            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Erstellinformationen, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="2" Grid.Column="2">
                 <TextBlock Text="Aufgabe Erzeugen?" />
             </Label>
-            <CheckBox Grid.Row="2" Grid.Column="3" IsChecked="{Binding AufgabeErzeugen}"/>
+            <CheckBox Grid.Row="2" Grid.Column="3" IsChecked="{Binding AufgabeErzeugen, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="3">
                 <TextBlock Text="Farbe"/>
             </Label>
-            <toolkit:ColorPicker Grid.Row="3" Grid.Column="1" SelectedColor="{Binding Farbe}"/>
+            <toolkit:ColorPicker Grid.Row="3" Grid.Column="1" SelectedColor="{Binding Farbe, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="5">
                 <TextBlock Text="Beschreibung"/>
             </Label>
-            <toolkit:RichTextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Rtb_beschreibung}"/>
+            <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Style.Setters>
+                                <Setter Property="Margin" Value="2"/>
+                                <Setter Property="MinWidth" Value="25"/>
+                            </Style.Setters> 
+                        </Style>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextTheme_default}">
+                            <Style.Setters>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Style.Setters>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Command="EditingCommands.ToggleBold" 
+                            CommandTarget="{Binding ElementName=_richTextBox}"
+                            MinWidth="25">
+                        <TextBlock Text="B" FontWeight="Bold"/>
+                    </Button>
+                    <Button Command="EditingCommands.ToggleItalic" 
+                            CommandTarget="{Binding ElementName=_richTextBox}"
+                            MinWidth="25">
+                        <TextBlock Text="I" FontStyle="Italic"/>
+                    </Button>
+                    <Button Command="EditingCommands.ToggleUnderline" 
+                            CommandTarget="{Binding ElementName=_richTextBox}"
+                            MinWidth="25">
+                        <TextBlock Text="U" TextDecorations="Underline"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_headline1_Click"
+                            MinWidth="25">
+                        <TextBlock Text="h1" FontWeight="Bold" FontSize="16"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_headline2_Click"
+                            MinWidth="25">
+                        <TextBlock Text="h2" FontStyle="Italic" FontSize="14"/>
+                    </Button>
+
+
+                </StackPanel>
+                <toolkit:RichTextBox 
+                    x:Name="_richTextBox"
+                    Grid.Row="1"
+                    Text="{Binding Rtb_beschreibung, 
+                                   UpdateSourceTrigger=PropertyChanged,
+                                   ValidatesOnDataErrors=True}">
+                    <toolkit:RichTextBox.TextFormatter>
+                        <toolkit:RtfFormatter/>
+                    </toolkit:RichTextBox.TextFormatter>
+                </toolkit:RichTextBox>
+            </Grid>
 
 
             <Label Grid.Row="6">

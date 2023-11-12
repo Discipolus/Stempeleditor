@@ -12,5 +12,6 @@ namespace IXMLConverter
         public string convertToXml(Stempelverfuegung stempel);
         public Stempelverfuegung convertToStempelverfuegung(string xml);
 
+        public string convertToXml(string rtf);
     }
 }
