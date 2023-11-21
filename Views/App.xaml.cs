@@ -36,7 +36,7 @@ namespace Views
             services.AddSingleton<IUebersichtViewModel, UebersichtViewModel>();
             services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
             services.AddTransient<IStempelListItemViewModel, StempelListItemViewModel>();
-            services.AddSingleton<IXMLConverter.IXMLConverter, DummyConverter>();
+            services.AddSingleton<IXMLConverter.IXMLConverter, XMLConverter.XMLConverter>();
             services.AddSingleton<IStorageService, DummyDatabase>();
             return services.BuildServiceProvider();
         }

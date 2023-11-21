@@ -10,6 +10,7 @@
              >
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextTheme_default}"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </UserControl.Resources>
 
     <Grid>
@@ -52,7 +53,14 @@
             <Label Grid.Row="0">
                 <TextBlock Text="ID"/>
             </Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Tb_guid, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" ToolTip="erwartetes Format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"/>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Tb_guid, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" ToolTip="{Binding Tb_guid_errormessage}"/>
+                <Button Grid.Column="1" Width="25" Margin="2" Command="{Binding GeneriereGuidCommand}"/>
+            </Grid>
 
             <Label Grid.Row="1">
                 <TextBlock Text="Name" />
@@ -97,29 +105,36 @@
                         </Style>
                     </StackPanel.Resources>
                     <Button Command="EditingCommands.ToggleBold" 
-                            CommandTarget="{Binding ElementName=_richTextBox}"
-                            MinWidth="25">
+                            CommandTarget="{Binding ElementName=_richTextBox}">
                         <TextBlock Text="B" FontWeight="Bold"/>
                     </Button>
                     <Button Command="EditingCommands.ToggleItalic" 
-                            CommandTarget="{Binding ElementName=_richTextBox}"
-                            MinWidth="25">
+                            CommandTarget="{Binding ElementName=_richTextBox}">
                         <TextBlock Text="I" FontStyle="Italic"/>
                     </Button>
                     <Button Command="EditingCommands.ToggleUnderline" 
-                            CommandTarget="{Binding ElementName=_richTextBox}"
-                            MinWidth="25">
+                            CommandTarget="{Binding ElementName=_richTextBox}">
                         <TextBlock Text="U" TextDecorations="Underline"/>
                     </Button>
                     <Button CommandTarget="{Binding ElementName=_richTextBox}"
-                            Click="btn_headline1_Click"
-                            MinWidth="25">
+                            Click="btn_headline1_Click">
                         <TextBlock Text="h1" FontWeight="Bold" FontSize="16"/>
                     </Button>
                     <Button CommandTarget="{Binding ElementName=_richTextBox}"
-                            Click="btn_headline2_Click"
-                            MinWidth="25">
+                            Click="btn_headline2_Click">
                         <TextBlock Text="h2" FontStyle="Italic" FontSize="14"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_platzhalter_Click">
+                        <TextBlock Text="X"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_zeitstempel_Click">                        
+                        <TextBlock Text="Zeit" FontStyle="Italic" FontSize="14"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_benutzername_Click">
+                        <TextBlock Text="Autor" FontStyle="Italic" FontSize="14"/>
                     </Button>
 
 
@@ -129,9 +144,24 @@
                     Grid.Row="1"
                     Text="{Binding Rtb_beschreibung, 
                                    UpdateSourceTrigger=PropertyChanged,
-                                   ValidatesOnDataErrors=True}">
+                                   ValidatesOnDataErrors=True}"
+                    ToolTip="{Binding Rtb_beschreibung_errormessage}">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="testtext testtext2"/>
+                            <Run FontWeight="Bold" Text="boldtesttext"/>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run FontWeight="Bold" FontStyle="Italic" Text="italicBoldText"/>
+                            <Run FontWeight="Bold" FontSize="16" Text="header 1"/>
+                            <Run FontStyle="Italic" FontSize="14" Text="header 2"/>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run Text="/datum /autor /{4}"/>
+                        </Paragraph>
+                    </FlowDocument>
                     <toolkit:RichTextBox.TextFormatter>
-                        <toolkit:RtfFormatter/>
+                        <toolkit:XamlFormatter/>
                     </toolkit:RichTextBox.TextFormatter>
                 </toolkit:RichTextBox>
             </Grid>

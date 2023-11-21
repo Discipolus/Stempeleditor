@@ -17,16 +17,16 @@ namespace ViewModels
     {
         [ObservableProperty] ObservableCollection<Stempelverfuegung> list = new ObservableCollection<Stempelverfuegung>();
         private IXMLConverter.IXMLConverter iXMLConverter;
-        private IStorage.IStorageService iStorageService;
+        private IStorageService iStorageService;
 
-        public UebersichtViewModel(IXMLConverter.IXMLConverter xMLConverter, IStorage.IStorageService storageService)
+        public UebersichtViewModel(IXMLConverter.IXMLConverter xMLConverter, IStorageService storageService)
         {            
             iXMLConverter = xMLConverter;
             iStorageService = storageService;
-            foreach (string stempelxml in iStorageService.ladeStempelListe())
-            {
-                list.Add(iXMLConverter.convertToStempelverfuegung(stempelxml));
-            }           
+            //foreach (string stempelxml in iStorageService.ladeStempelListe())
+            //{
+            //    list.Add(iXMLConverter.convertToStempelverfuegung(stempelxml));
+            //}           
         }
     }
 }

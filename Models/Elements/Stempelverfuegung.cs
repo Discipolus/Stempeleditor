@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Models.Elements
 {
@@ -61,15 +62,15 @@ namespace Models.Elements
             }  
         }
         //public string Beschreibung { get; set; }
-        public XmlDocument Beschreibung { get; set; }
+        public XDocument Beschreibung { get; set; }
         public List<Platzhalter> PlatzhalterListe { get; set; } 
         public List<Funktion> Funktionen { get; set; }
         #endregion
 
         #region Konstruktoren
-        public Stempelverfuegung() : this(Guid.Empty, "", false, Color.Empty, false, new XmlDocument(), new List<Platzhalter>(), new List<Funktion>()) { }
-        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XmlDocument beschreibung) : this(id, name, erstellinformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, new List<Platzhalter>(), new List<Funktion>()) { }
-        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XmlDocument beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
+        public Stempelverfuegung() : this(Guid.Empty, "", false, Color.Empty, false, new XDocument(), new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XDocument beschreibung) : this(id, name, erstellinformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XDocument beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
         {
             Id = id;
             Name = name;

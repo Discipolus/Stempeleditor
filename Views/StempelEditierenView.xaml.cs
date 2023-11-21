@@ -36,13 +36,14 @@ namespace Views
             if (range.GetPropertyValue(TextElement.FontWeightProperty).Equals(FontWeights.Bold) && range.GetPropertyValue(TextElement.FontSizeProperty).Equals(16.0))
             {
                 range.ApplyPropertyValue(TextElement.FontSizeProperty, 12.0);
-                range.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);                                
+                range.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
             }
             else
             {
                 range.ApplyPropertyValue(TextElement.FontSizeProperty, 16.0);
                 range.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
             }
+            _richTextBox.Focus();
         }
         private void btn_headline2_Click(object sender, RoutedEventArgs e)
         {
@@ -57,6 +58,22 @@ namespace Views
                 range.ApplyPropertyValue(TextElement.FontSizeProperty, 14.0);
                 range.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
             }
+            _richTextBox.Focus();
+        }
+        private void btn_platzhalter_Click(object sender, RoutedEventArgs e)
+        {
+            _richTextBox.Selection.Start.InsertTextInRun("/{}");
+            _richTextBox.Focus();
+        }
+        private void btn_zeitstempel_Click(object sender, RoutedEventArgs e)
+        {
+            _richTextBox.Selection.Start.InsertTextInRun("/datum");
+            _richTextBox.Focus();
+        }
+        private void btn_benutzername_Click(object sender, RoutedEventArgs e)
+        {
+            _richTextBox.Selection.Start.InsertTextInRun("/autor");
+            _richTextBox.Focus();
         }
     }
 }
