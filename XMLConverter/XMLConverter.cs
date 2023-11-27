@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using IXMLConverter;
 using Models.Elements;
+using Models.Elements.PlatzhalterTypen;
 
 namespace XMLConverter
 {
@@ -22,26 +23,66 @@ namespace XMLConverter
 
         public Stempelverfuegung convertToStempelverfuegung(string xml)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Stempelverfuegung));
-            StringReader stringReader = new StringReader(xml);
-            try
+            if (xml.Contains("False"))
             {
-                return (Stempelverfuegung)serializer.Deserialize(stringReader);
+                xml = xml.Replace("False", "false");
             }
-            catch (Exception e)
+            if (xml.Contains("True"))
             {
-                Console.WriteLine(e.Message);
-                return new Stempelverfuegung();
+                xml = xml.Replace("True", "true");
             }
+            XDocument stempelxml = XDocument.Parse(xml);
+            Guid id = Guid.Parse(stempelxml.Root!.Element("Id")!.Value);
+            string name = stempelxml.Root.Element("Name")!.Value;
+            bool erstellInformationenAnzeigen = Convert.ToBoolean(stempelxml.Root.Element("ErstellInformationenAnzeigen")!.Value);
+            System.Drawing.Color farbe = System.Drawing.ColorTranslator.FromHtml(stempelxml.Root.Element("Farbe")!.Value);
+            bool aufgabeErzeugen = Convert.ToBoolean(stempelxml.Root.Element("AufgabeErzeugen")!.Value);
+            XElement beschreibung = stempelxml.Root.Element("Beschreibung")!;
+            List<Platzhalter> platzhalterListe = new List<Platzhalter>();
+
+            XElement platzhalterListeXml = stempelxml.Root.Element("PlatzhalterListe")!;
+            foreach (XElement platzhalter in platzhalterListeXml.Elements())
+            {
+                Platzhalter currentPh;
+                switch (platzhalter.Element("Typ")!.Value)
+                {
+                    case "NumInterval":
+                        currentPh = new NumInterval();
+                        break;
+                    case "Text":
+                        currentPh = new Text();
+                        break;
+                    case "TextBoxEinzeilig":
+                        currentPh = new TextBoxEinzeilig();
+                        break;
+                    case "TextBoxMehrzeilig":
+                        currentPh = new TextBoxMehrzeilig();
+                        break;
+                    case "Kalenderdatum":
+                        currentPh = new Kalenderdatum();
+                        break;
+                    default:
+                        continue;
+                }
+                currentPh.Id = int.Parse(platzhalter.Element("Id")!.Value);
+                currentPh.Name = platzhalter.Element("Name")!.Value;
+                Platzhalter.Wertecontainer wertecontainer = new Platzhalter.Wertecontainer();
+                wertecontainer.Wert = platzhalter.Element("Werte")!.Element("Wert")!.Value;
+                wertecontainer.Vorbelegung = platzhalter.Element("Werte")!.Element("Vorbelegung")!.Value;
+                currentPh.Werte = wertecontainer;
+                platzhalterListe.Add(currentPh);
+            }
+            return new Stempelverfuegung(id, name, erstellInformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, platzhalterListe);
         }
 
-        public XDocument convertToXml(Stempelverfuegung stempel)
+        public string convertToXml(Stempelverfuegung stempel)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Stempelverfuegung));
             StringWriter stringWriter = new StringWriter();
             serializer.Serialize(stringWriter, stempel);
-            XDocument xDocument = XDocument.Parse(stringWriter.ToString());
-            return xDocument;
+            return stringWriter.ToString();
+            //XDocument xDocument = XDocument.Parse(stringWriter.ToString());
+            //return xDocument;
         }
 
         public XElement convertBeschreibungToXml(string xamlString)

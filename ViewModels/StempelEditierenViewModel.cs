@@ -21,6 +21,7 @@ namespace ViewModels
     public partial class StempelEditierenViewModel : ObservableValidator, IStempelEditierenViewModel
     {
         private IXMLConverter.IXMLConverter converter;
+        private IStorage.IStorageService storageService;
         //IDictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
         [ObservableProperty]
         string tb_guid_errormessage;
@@ -48,11 +49,6 @@ namespace ViewModels
         [ObservableProperty]
         Color farbe;
 
-        //[ObservableProperty]
-        //[NotifyCanExecuteChangedFor(nameof(SpeichernCommand))]
-        //[CustomValidation(typeof(StempelEditierenViewModel),nameof(checkBeschreibung))]
-        //string? rtb_beschreibung;
-
         [ObservableProperty]
         string rtb_beschreibung_errormessage;
 
@@ -77,23 +73,19 @@ namespace ViewModels
                 throw new ArgumentNullException("IStempelViewModel Interface null");
             }
             this.converter = converter;
-            
         }
         [RelayCommand]
         public void Neu()
         {
             clear();
         }
-        [RelayCommand]
-        public void Abbrechen()
-        {
-            
-        }
 
         [RelayCommand(CanExecute = nameof(checkAllValues))]
         public void Speichern()
         {
-            converter.convertBeschreibungToXml(Rtb_beschreibung);
+            Stempelverfuegung stempelverfuegung = GetStempelverfuegung();
+            storageService.speicherStempel(converter.convertToXml(stempelverfuegung).ToString());
+
         }
         [RelayCommand]
         public void GeneriereGuid()
@@ -112,8 +104,8 @@ namespace ViewModels
         public Stempelverfuegung GetStempelverfuegung()
         {
             Guid guid = Guid.Parse(Tb_guid);
-            XDocument doc = converter.convertBeschreibungToXml(Rtb_beschreibung);
-            return new Stempelverfuegung(guid, Tb_name, Erstellinformationen, Farbe, AufgabeErzeugen, doc);
+            XElement beschreibungXml = converter.convertBeschreibungToXml(Rtb_beschreibung);
+            return new Stempelverfuegung(guid, Tb_name, Erstellinformationen, Farbe, AufgabeErzeugen, beschreibungXml);
         }
         private bool checkAllValues()
         {

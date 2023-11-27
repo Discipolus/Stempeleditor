@@ -10,9 +10,9 @@ namespace IXMLConverter
 {
     public interface IXMLConverter
     {
-        public XDocument convertToXml(Stempelverfuegung stempel);
+        public string convertToXml(Stempelverfuegung stempel);
         public Stempelverfuegung convertToStempelverfuegung(string xml);
 
-        public XDocument convertBeschreibungToXml(string xaml);
+        public XElement convertBeschreibungToXml(string xaml);
     }
 }

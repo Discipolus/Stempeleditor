@@ -31,7 +31,7 @@ namespace Models.Elements
                 }
             } 
         }
-        public bool ErstellinformationenAnzeigen { get; set; }
+        public bool ErstellInformationenAnzeigen { get; set; }
         private Color farbe;
         public Color Farbe 
         {
@@ -62,19 +62,20 @@ namespace Models.Elements
             }  
         }
         //public string Beschreibung { get; set; }
-        public XDocument Beschreibung { get; set; }
+        public XElement Beschreibung { get; set; }
         public List<Platzhalter> PlatzhalterListe { get; set; } 
         public List<Funktion> Funktionen { get; set; }
         #endregion
 
         #region Konstruktoren
-        public Stempelverfuegung() : this(Guid.Empty, "", false, Color.Empty, false, new XDocument(), new List<Platzhalter>(), new List<Funktion>()) { }
-        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XDocument beschreibung) : this(id, name, erstellinformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, new List<Platzhalter>(), new List<Funktion>()) { }
-        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XDocument beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
+        public Stempelverfuegung() : this(Guid.Empty, "default", false, Color.Empty, false, new XElement("dummy"), new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XElement beschreibung) : this(id, name, erstellinformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, new List<Platzhalter>(), new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XElement beschreibung, List<Platzhalter> platzhalterliste) : this(id, name, erstellinformationenAnzeigen, farbe, aufgabeErzeugen, beschreibung, platzhalterliste, new List<Funktion>()) { }
+        public Stempelverfuegung(Guid id, string name, bool erstellinformationenAnzeigen, Color farbe, bool aufgabeErzeugen, XElement beschreibung, List<Platzhalter> platzhalterliste, List<Funktion> funktionen)
         {
             Id = id;
             Name = name;
-            ErstellinformationenAnzeigen = erstellinformationenAnzeigen;
+            ErstellInformationenAnzeigen = erstellinformationenAnzeigen;
             Farbe = farbe;
             AufgabeErzeugen = aufgabeErzeugen;
             Beschreibung = beschreibung;

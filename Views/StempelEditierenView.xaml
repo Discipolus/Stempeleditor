@@ -27,10 +27,6 @@
                  Style="{StaticResource ActionButtonTheme}"
                  Command="{Binding SpeichernCommand}"
                  />
-            <Button Content="Abbrechen"
-                 Style="{StaticResource ActionButtonTheme}"
-                 Command="{Binding AbbrechenCommand}"
-                 />
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
