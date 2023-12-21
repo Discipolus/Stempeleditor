@@ -4,10 +4,214 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Views"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="Red">
+             d:DesignHeight="450" d:DesignWidth="1000"             
+             >
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextTheme_default}"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>        
+    </UserControl.Resources>
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Button Content="Neu"
+                    Style="{StaticResource ActionButtonTheme}"
+                    Command="{Binding NeuCommand}"
+                    FocusVisualStyle="{DynamicResource FocusVisual}"
+                    TabIndex="0"
+                    />
+            <Button Content="speichern"
+                    Style="{StaticResource ActionButtonTheme}"
+                    Command="{Binding Speichern_ClickCommand}"
+                    FocusVisualStyle="{DynamicResource FocusVisual}"
+                    TabIndex="1"
+                    />
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Focusable="False">
+                <TextBlock Text="ID"/>
+            </Label>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Tb_guid, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                         ToolTip="{Binding Tb_guid_errormessage}"
+                         TabIndex="6"
+                         FocusVisualStyle="{DynamicResource FocusVisual}"
+                         />
+                <Button Grid.Column="1"
+                        Width="25"
+                        Margin="2"
+                        Command="{Binding GeneriereGuidCommand}"
+                        TabIndex="7"
+                        FocusVisualStyle="{DynamicResource FocusVisual}"
+                        />
+            </Grid>
+
+            <Label Grid.Row="1" Focusable="False">
+                <TextBlock Text="Name" />
+            </Label>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="3"
+                     Text="{Binding Tb_name, UpdateSourceTrigger=PropertyChanged}"
+                     TabIndex="8"
+                     FocusVisualStyle="{DynamicResource FocusVisual}"
+                     />
+
+            <Label Grid.Row="2">
+                <TextBlock Text="Erstellinformationen anzeigen?"/>
+            </Label>
+            <CheckBox Grid.Row="2"
+                      Grid.Column="1"
+                      IsChecked="{Binding Erstellinformationen, UpdateSourceTrigger=PropertyChanged}"
+                      TabIndex="9"
+                      FocusVisualStyle="{DynamicResource FocusVisual}"                      
+                      />
+
+            <Label Grid.Row="2" Grid.Column="2">
+                <TextBlock Text="Aufgabe Erzeugen?" />
+            </Label>
+            <CheckBox Grid.Row="2"
+                      Grid.Column="3"
+                      IsChecked="{Binding AufgabeErzeugen, UpdateSourceTrigger=PropertyChanged}"
+                      TabIndex="10"
+                      FocusVisualStyle="{DynamicResource FocusVisual}"                      
+                      />
+
+            <Label Grid.Row="3">
+                <TextBlock Text="Farbe"/>
+            </Label>
+            <toolkit:ColorPicker Grid.Row="3"
+                                 Grid.Column="1"
+                                 SelectedColor="{Binding Farbe, UpdateSourceTrigger=PropertyChanged}"
+                                 TabIndex="11"
+                                 FocusVisualStyle="{DynamicResource FocusVisual}"
+                                 />
+            <Label Grid.Row="5">
+                <TextBlock Text="Beschreibung"/>
+            </Label>
+            <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Style.Setters>
+                                <Setter Property="Margin" Value="2"/>
+                                <Setter Property="MinWidth" Value="25"/>
+                            </Style.Setters> 
+                        </Style>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextTheme_default}">
+                            <Style.Setters>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Style.Setters>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Command="EditingCommands.ToggleBold" 
+                            CommandTarget="{Binding ElementName=_richTextBox}"
+                            TabIndex="12"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"
+                            >
+                        <TextBlock Text="B" FontWeight="Bold"/>
+                    </Button>
+                    <Button Command="EditingCommands.ToggleItalic" 
+                            CommandTarget="{Binding ElementName=_richTextBox}"
+                            TabIndex="13"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"
+                            >
+                        <TextBlock Text="I" FontStyle="Italic"/>
+                    </Button>
+                    <Button Command="EditingCommands.ToggleUnderline" 
+                            CommandTarget="{Binding ElementName=_richTextBox}"
+                            TabIndex="14"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"                            >
+                        <TextBlock Text="U" TextDecorations="Underline"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_headline1_Click"
+                            TabIndex="15"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"                            >
+                        <TextBlock Text="h1" FontWeight="Bold" FontSize="16"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_headline2_Click"
+                            TabIndex="16"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"                            >
+                        <TextBlock Text="h2" FontStyle="Italic" FontSize="14"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_platzhalter_Click"
+                            TabIndex="17"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"                            >
+                        <TextBlock Text="X"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_zeitstempel_Click"
+                            TabIndex="18"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"                            >                        
+                        <TextBlock Text="Zeit" FontStyle="Italic" FontSize="14"/>
+                    </Button>
+                    <Button CommandTarget="{Binding ElementName=_richTextBox}"
+                            Click="btn_benutzername_Click"
+                            TabIndex="19"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"                            >
+                        <TextBlock Text="Autor" FontStyle="Italic" FontSize="14"/>
+                    </Button>
+
+
+                </StackPanel>
+                <toolkit:RichTextBox 
+                    x:Name="_richTextBox"
+                    Grid.Row="1"
+                    Text="{Binding Rtb_beschreibung, 
+                                   UpdateSourceTrigger=PropertyChanged,
+                                   ValidatesOnDataErrors=True}"
+                    ToolTip="{Binding Rtb_beschreibung_errormessage}"
+                    TabIndex="20"
+                    FocusVisualStyle="{DynamicResource FocusVisual}">
+
+                    <toolkit:RichTextBox.TextFormatter>
+                        <toolkit:XamlFormatter/>
+                    </toolkit:RichTextBox.TextFormatter>
+                </toolkit:RichTextBox>
+            </Grid>
+
+
+            <Label Grid.Row="6">
+                <TextBlock Text="Platzhalter"/>
+            </Label>
+            <Button Grid.Row="6" Grid.Column="1" Content="Hinzufügen">                
+            </Button>
+            <Label Grid.Row="7">
+                <TextBlock Text="Funktionen"/>
+            </Label>
+        </Grid>
     </Grid>
 </UserControl>

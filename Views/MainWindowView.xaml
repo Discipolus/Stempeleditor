@@ -6,13 +6,11 @@
         xmlns:local="clr-namespace:Views"
         xmlns:viewModel="clr-namespace:ViewModels;assembly=ViewModels"
         mc:Ignorable="d"
-        Height="600" Width="920"
-        WindowStyle="None"
+        Height="600" Width="920"        
         ResizeMode="CanResize"
-        Background="Transparent"
-        AllowsTransparency="True"
+        Background="Transparent"        
         >
-
+    
     <Border Background="#272537"
             CornerRadius="20">
         <Grid>
@@ -30,22 +28,24 @@
                        Foreground="White"
                        FontSize="22"
                        Margin="20,0,0,0"
+                       Focusable="False"
                        />
+
+
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Übersicht"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
-                             IsChecked="True"
+                             IsChecked="{Binding UebersichtGeoeffnet}"
                              Command="{Binding UebersichtAufrufenCommand}"
+                             TabIndex="0"
+                             FocusVisualStyle="{DynamicResource FocusVisual}"
                              />
-                <RadioButton Content="Stempel Editieren"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
+                <RadioButton Content="Stempel Editieren"                             
                              Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="{Binding StempelEditorGeoeffnet}"
                              Command="{Binding StempelEditierenAufrufenCommand}"
+                             TabIndex="1"
+                             FocusVisualStyle="{DynamicResource FocusVisual}"
                              />
                 <!--<RadioButton Content="XML Anzeige"
                              Height="50"
@@ -53,6 +53,13 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              />-->
+                <RadioButton Content="Schließen"
+                        Style="{StaticResource MenuButtonTheme}"
+                        Command="{Binding SchliesseProgrammCommand}"
+                        Click="CloseApp"
+                        TabIndex="2"
+                        FocusVisualStyle="{DynamicResource FocusVisual}"
+                        />
             </StackPanel>
             <TextBox Width="250"
                      Height="40"
@@ -60,11 +67,17 @@
                      HorizontalAlignment="Left"
                      Margin="5"
                      Grid.Column="1"
-                     Style="{StaticResource ModernTextBox}"/>
+                     Style="{StaticResource ModernTextBox}"
+                     FocusVisualStyle="{DynamicResource FocusVisual}"/>
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
                             Margin="10"
-                            Content="{Binding CurrentView}"/>
+                            Content="{Binding CurrentView}"
+                            TabIndex="3"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"
+                            KeyboardNavigation.ControlTabNavigation="Local"
+                            KeyboardNavigation.TabIndex="3"
+                            />
         </Grid>
     </Border>
 </Window>

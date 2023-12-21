@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using ViewModels;
 using ViewModelsInterfaces;
+using IXMLConverter;
+using XMLConverter;
+using IStorage;
+using SQLDatabaseConnection;
 
 namespace Views
 {
@@ -23,15 +27,17 @@ namespace Views
             base.OnStartup(e);
             ServiceProvider = ConfigureServices()!;
         }
-        public IServiceProvider ConfigureServices()
+        public static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
             // Registrieren Sie Ihre Dienste und ViewModels. Transient wird erstellt, wenn es angefordert wird. Scoped wird einmal pro Anforderung erstellt. Singleton wird einmal erstellt.
             services.AddSingleton<IStempelEditierenViewModel, StempelEditierenViewModel>();
-            services.AddTransient<IUebersichtViewModel, UebersichtViewModel>();
-            services.AddTransient<IStempelViewModel, StempelViewModel>();
+            services.AddSingleton<IUebersichtViewModel, UebersichtViewModel>();
             services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
+            services.AddTransient<IStempelListItemViewModel, StempelListItemViewModel>();
+            services.AddSingleton<IXMLConverter.IXMLConverter, XMLConverter.XMLConverter>();
+            services.AddSingleton<IStorageService, SQLDatabase>();
             return services.BuildServiceProvider();
         }
     }

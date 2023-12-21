@@ -18,17 +18,17 @@ using ViewModelsInterfaces;
 namespace Views.StempelElemente
 {
     /// <summary>
-    /// Interaktionslogik für Stempel.xaml
+    /// Interaktionslogik für StempelListItem.xaml
     /// </summary>
-    public partial class Stempel : UserControl
+    public partial class StempelListItem : UserControl
     {
-        public Stempel()
+        public StempelListItem()
         {
             InitializeComponent();
-            IStempelViewModel stempelViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IStempelViewModel>();
+            IStempelListItemViewModel stempelListItemViewModel = ((App)Application.Current).ServiceProvider.GetRequiredService<IStempelListItemViewModel>();
 
             // Setzen Sie den DataContext
-            this.DataContext = stempelViewModel;
+            this.DataContext = stempelListItemViewModel;
         }
     }
 }

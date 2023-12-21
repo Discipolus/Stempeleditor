@@ -30,5 +30,50 @@ namespace Views
             // Setzen Sie den DataContext
             this.DataContext = stempelEditierenViewModel;
         }
+        private void btn_headline1_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange range = new TextRange(_richTextBox.Selection.Start, _richTextBox.Selection.End);
+            if (range.GetPropertyValue(TextElement.FontWeightProperty).Equals(FontWeights.Bold) && range.GetPropertyValue(TextElement.FontSizeProperty).Equals(16.0))
+            {
+                range.ApplyPropertyValue(TextElement.FontSizeProperty, 12.0);
+                range.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Normal);
+            }
+            else
+            {
+                range.ApplyPropertyValue(TextElement.FontSizeProperty, 16.0);
+                range.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+            }
+            _richTextBox.Focus();
+        }
+        private void btn_headline2_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange range = new TextRange(_richTextBox.Selection.Start, _richTextBox.Selection.End);
+            if (range.GetPropertyValue(TextElement.FontStyleProperty).Equals(FontStyles.Italic) && range.GetPropertyValue(TextElement.FontSizeProperty).Equals(14.0))
+            {
+                range.ApplyPropertyValue(TextElement.FontSizeProperty, 12.0);
+                range.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Normal);
+            }
+            else
+            {
+                range.ApplyPropertyValue(TextElement.FontSizeProperty, 14.0);
+                range.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+            }
+            _richTextBox.Focus();
+        }
+        private void btn_platzhalter_Click(object sender, RoutedEventArgs e)
+        {
+            _richTextBox.Selection.Start.InsertTextInRun("/{}");
+            _richTextBox.Focus();
+        }
+        private void btn_zeitstempel_Click(object sender, RoutedEventArgs e)
+        {
+            _richTextBox.Selection.Start.InsertTextInRun("/datum");
+            _richTextBox.Focus();
+        }
+        private void btn_benutzername_Click(object sender, RoutedEventArgs e)
+        {
+            _richTextBox.Selection.Start.InsertTextInRun("/autor");
+            _richTextBox.Focus();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Elements;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,5 +10,7 @@ namespace ViewModelsInterfaces
 {
     public interface IStempelEditierenViewModel : INotifyPropertyChanged, INotifyPropertyChanging
     {
+        public event EventHandler StempelSpeichernEvent;
+        public void fillStempelverfuegung(Stempelverfuegung stempelverfuegung);
     }
 }

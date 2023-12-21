@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModelsInterfaces
 {
-    public interface IStempelViewModel : INotifyPropertyChanged, INotifyPropertyChanging
-    {
+    public interface IStempelListItemViewModel : INotifyPropertyChanged, INotifyPropertyChanging
+    {        
     }
 }
