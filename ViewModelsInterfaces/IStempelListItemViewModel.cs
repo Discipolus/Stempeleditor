@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace ViewModelsInterfaces
 {
     public interface IStempelListItemViewModel : INotifyPropertyChanged, INotifyPropertyChanging
-    {
+    {        
     }
 }

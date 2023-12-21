@@ -8,8 +8,8 @@ namespace IStorage
 {
     public interface IStorageService
     {
-        public void speicherStempel(string stempel);
-        public string ladeStempel();
+        public void speicherStempel(string stempel, Guid guid, string stempelName);
+        public string? ladeStempel(Guid guid);
         public List<string> ladeStempelListe();
     }
 }

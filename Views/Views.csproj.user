@@ -36,6 +36,9 @@
     <Page Update="StempelElemente\UC_FormatBar.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Theme\FocusVisual.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\ActionButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>

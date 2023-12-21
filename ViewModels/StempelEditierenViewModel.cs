@@ -21,12 +21,12 @@ namespace ViewModels
     public partial class StempelEditierenViewModel : ObservableValidator, IStempelEditierenViewModel
     {
         private IXMLConverter.IXMLConverter converter;
-        private IStorage.IStorageService storageService;
+        //private IStorage.IStorageService storageService;
         //IDictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
         [ObservableProperty]
         string tb_guid_errormessage;
         private string tb_guid;
-        [CustomValidation(typeof(StempelEditierenViewModel), nameof(checkGuid))]
+        [CustomValidation(typeof(StempelEditierenViewModel), nameof(checkGuid))]        
         public string Tb_guid
         {
             get => tb_guid;
@@ -34,7 +34,7 @@ namespace ViewModels
             {
                 if (SetProperty(ref this.tb_guid, value, true))
                 {
-                    SpeichernCommand.NotifyCanExecuteChanged();
+                    Speichern_ClickCommand.NotifyCanExecuteChanged();
                 }
             }
 
@@ -61,31 +61,37 @@ namespace ViewModels
             {
                 if (SetProperty(ref this.rtb_beschreibung, value, true))
                 {
-                    SpeichernCommand.NotifyCanExecuteChanged();
+                    Speichern_ClickCommand.NotifyCanExecuteChanged();
                 }
             }
         }
 
+        public event EventHandler StempelSpeichernEvent;
         public StempelEditierenViewModel(IXMLConverter.IXMLConverter converter)
         {
             if (converter == null)
             {
-                throw new ArgumentNullException("IStempelViewModel Interface null");
+                throw new ArgumentNullException("Interfaces null");
             }
-            this.converter = converter;
+            this.converter = converter;            
         }
+
+
         [RelayCommand]
         public void Neu()
-        {
+        {            
             clear();
+            GeneriereGuid();
         }
 
         [RelayCommand(CanExecute = nameof(checkAllValues))]
-        public void Speichern()
+        public void OnSpeichern_Click()
         {
-            Stempelverfuegung stempelverfuegung = GetStempelverfuegung();
-            storageService.speicherStempel(converter.convertToXml(stempelverfuegung).ToString());
-
+            StempelEventArgs eventArgs = new StempelEventArgs();
+            eventArgs.Stempelverfuegung = GetStempelverfuegung();
+            
+            EventHandler eventHandler = StempelSpeichernEvent;
+            eventHandler?.Invoke(this, eventArgs);
         }
         [RelayCommand]
         public void GeneriereGuid()
@@ -186,6 +192,16 @@ namespace ViewModels
                     return new ValidationResult("Platzhalter in der Beschreibung müssen im Format /{#} angegeben werden, wobei # die ID des Platzhalters ist. Beispiel '/{1}' für den Platzhalter mit der Id 1.");
                 }
             }
+        }
+
+        public void fillStempelverfuegung(Stempelverfuegung stempelverfuegung)
+        {
+            Tb_guid = stempelverfuegung.Id.ToString();
+            Tb_name = stempelverfuegung.Name;
+            Erstellinformationen = stempelverfuegung.ErstellInformationenAnzeigen;
+            AufgabeErzeugen = stempelverfuegung.AufgabeErzeugen;
+            Farbe = stempelverfuegung.Farbe;
+            //Rtb_beschreibung = converter.convertBeschreibungToXaml(stempelverfuegung.Beschreibung);
         }
     }
 }

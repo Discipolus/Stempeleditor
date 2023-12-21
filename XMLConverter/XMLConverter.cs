@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+//using System.Xaml;
 using IXMLConverter;
 using Models.Elements;
 using Models.Elements.PlatzhalterTypen;
@@ -79,7 +80,12 @@ namespace XMLConverter
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Stempelverfuegung));
             StringWriter stringWriter = new StringWriter();
-            serializer.Serialize(stringWriter, stempel);
+            XmlWriterSettings settings = new XmlWriterSettings 
+            { Indent = true,
+            OmitXmlDeclaration = true};
+            XmlSerializerNamespaces ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty});
+            XmlWriter writer = XmlWriter.Create(stringWriter, settings);            
+            serializer.Serialize(writer, stempel,ns);
             return stringWriter.ToString();
             //XDocument xDocument = XDocument.Parse(stringWriter.ToString());
             //return xDocument;
@@ -158,6 +164,49 @@ namespace XMLConverter
             }
             return beschreibung;
         }
+        public string convertBeschreibungToXaml(XElement beschreibung)
+        {
+            
+            //Convert xml Beschreibung to xaml
+            string xamlString = "";
+            foreach (XElement element in beschreibung.Elements())
+            {
+                switch (element.Name.ToString())
+                {
+                    case "h1":
+                        xamlString += "<Paragraph><Run FontWeight=\"Bold\" FontSize=\"16\">" + element.Value + "</Run></Paragraph>";
+                        break;
+                    case "h2":
+                        xamlString += "<Paragraph><Run FontWeight=\"Bold\" FontSize=\"14\">" + element.Value + "</Run></Paragraph>";
+                        break;
+                    case "b":
+                        xamlString += "<Paragraph><Run FontWeight=\"Bold\">" + element.Value + "</Run></Paragraph>";
+                        break;
+                    case "i":
+                        xamlString += "<Paragraph><Run FontStyle=\"Italic\">" + element.Value + "</Run></Paragraph>";
+                        break;
+                    case "u":
+                        xamlString += "<Paragraph><Run TextDecorations=\"Underline\">" + element.Value + "</Run></Paragraph>";
+                        break;
+                    case "br":
+                        xamlString += "<Paragraph><LineBreak/></Paragraph>";
+                        break;
+                        case "PlatzhalterRef":
+                            xamlString += "<Paragraph><Run>/{" + element.Value + "}</Run></Paragraph>";
+                        break;
+                        case "ZeitstempelRef":
+                            xamlString += "<Paragraph><Run>/datum</Run></Paragraph>";
+                        break;
+                        case "BenutzernameRef":
+                            xamlString += "<Paragraph><Run>/autor</Run></Paragraph>";
+                        break;
+                    default:
+                        xamlString += "<Paragraph><Run>" + element.Value + "</Run></Paragraph>";
+                        break;
+                }
+            }
+            return xamlString;
+        }   
         private static bool compareXAttributes(XAttribute a, XAttribute b)
         {
             return a.Name.Equals(b.Name) && a.Value.Equals(b.Value);

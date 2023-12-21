@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using ViewModelsInterfaces;
 using Models.Elements;
 using CommunityToolkit.Mvvm.Input;
+using System.Runtime.InteropServices;
 
 namespace ViewModels
 {
@@ -19,26 +20,49 @@ namespace ViewModels
         [ObservableProperty] ObservableCollection<Stempelverfuegung> list = new ObservableCollection<Stempelverfuegung>();
         public Stempelverfuegung SelectedStempel { get; set; }
         private IXMLConverter.IXMLConverter iXMLConverter;
-        private IStorageService iStorageService;
+        private IStorageService iStorageService;        
+
+        public event EventHandler StempelEditierenEvent;
 
         public UebersichtViewModel(IXMLConverter.IXMLConverter xMLConverter, IStorageService storageService)
         {            
             iXMLConverter = xMLConverter;
             iStorageService = storageService;
-            foreach (string stempelxml in iStorageService.ladeStempelListe())
+            //foreach (string stempelxml in iStorageService.ladeStempelListe())
+            //{
+            //    list.Add(iXMLConverter.convertToStempelverfuegung(stempelxml));
+            //}
+        }
+        //[RelayCommand()]
+        //public void StempelEditierenAufrufen()
+        //{
+        //    if (SelectedStempel != null)
+        //    {
+        //        //StempelEditierenViewModel stempelEditierenViewModel = new StempelEditierenViewModel(iXMLConverter, iStorageService, SelectedStempel);
+        //        //StempelEditierenView stempelEditierenView = new StempelEditierenView(stempelEditierenViewModel);
+        //        //stempelEditierenView.Show();
+        //    }
+        //}
+        public void updateList(List<Stempelverfuegung> stempelverfuegungen)
+        {
+            list.Clear();       
+            foreach (Stempelverfuegung stempel in stempelverfuegungen)
             {
-                list.Add(iXMLConverter.convertToStempelverfuegung(stempelxml));
+                list.Add(stempel);
             }
         }
-        [RelayCommand()]
-        public void StempelEditierenAufrufen()
+        private bool stempelSelected()
         {
-            if (SelectedStempel != null)
-            {
-                //StempelEditierenViewModel stempelEditierenViewModel = new StempelEditierenViewModel(iXMLConverter, iStorageService, SelectedStempel);
-                //StempelEditierenView stempelEditierenView = new StempelEditierenView(stempelEditierenViewModel);
-                //stempelEditierenView.Show();
-            }
+            return SelectedStempel is not null;
+        }
+        [RelayCommand(CanExecute = nameof(stempelSelected))]
+        public void OnStempelEditieren_Click()
+        {
+            StempelEventArgs eventArgs = new StempelEventArgs();
+            eventArgs.Stempelverfuegung = SelectedStempel;
+
+            EventHandler eventHandler = StempelEditierenEvent;
+            eventHandler?.Invoke(this, eventArgs);
         }
     }
 }

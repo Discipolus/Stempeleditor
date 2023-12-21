@@ -10,7 +10,7 @@
         ResizeMode="CanResize"
         Background="Transparent"        
         >
-
+    
     <Border Background="#272537"
             CornerRadius="20">
         <Grid>
@@ -28,16 +28,23 @@
                        Foreground="White"
                        FontSize="22"
                        Margin="20,0,0,0"
+                       Focusable="False"
                        />
+
+
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Übersicht"
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
                              Command="{Binding UebersichtAufrufenCommand}"
+                             TabIndex="0"
+                             FocusVisualStyle="{DynamicResource FocusVisual}"
                              />
                 <RadioButton Content="Stempel Editieren"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding StempelEditierenAufrufenCommand}"
+                             TabIndex="1"
+                             FocusVisualStyle="{DynamicResource FocusVisual}"
                              />
                 <!--<RadioButton Content="XML Anzeige"
                              Height="50"
@@ -49,6 +56,8 @@
                         Style="{StaticResource MenuButtonTheme}"
                         Command="{Binding SchliesseProgrammCommand}"
                         Click="CloseApp"
+                        TabIndex="2"
+                        FocusVisualStyle="{DynamicResource FocusVisual}"
                         />
             </StackPanel>
             <TextBox Width="250"
@@ -57,11 +66,17 @@
                      HorizontalAlignment="Left"
                      Margin="5"
                      Grid.Column="1"
-                     Style="{StaticResource ModernTextBox}"/>
+                     Style="{StaticResource ModernTextBox}"
+                     FocusVisualStyle="{DynamicResource FocusVisual}"/>
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
                             Margin="10"
-                            Content="{Binding CurrentView}"/>
+                            Content="{Binding CurrentView}"
+                            TabIndex="3"
+                            FocusVisualStyle="{DynamicResource FocusVisual}"
+                            KeyboardNavigation.ControlTabNavigation="Local"
+                            KeyboardNavigation.TabIndex="3"
+                            />
         </Grid>
     </Border>
 </Window>

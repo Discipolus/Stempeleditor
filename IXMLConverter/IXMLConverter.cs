@@ -14,5 +14,6 @@ namespace IXMLConverter
         public Stempelverfuegung convertToStempelverfuegung(string xml);
 
         public XElement convertBeschreibungToXml(string xaml);
+        public string convertBeschreibungToXaml(XElement beschreibung);
     }
 }

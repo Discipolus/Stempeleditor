@@ -26,5 +26,9 @@ namespace XMLConverter
         {
             throw new NotImplementedException();
         }
+        public string convertBeschreibungToXaml(XElement beschreibung)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
