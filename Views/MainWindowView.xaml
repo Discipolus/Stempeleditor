@@ -35,13 +35,14 @@
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Übersicht"
                              Style="{StaticResource MenuButtonTheme}"
-                             IsChecked="True"
+                             IsChecked="{Binding UebersichtGeoeffnet}"
                              Command="{Binding UebersichtAufrufenCommand}"
                              TabIndex="0"
                              FocusVisualStyle="{DynamicResource FocusVisual}"
                              />
-                <RadioButton Content="Stempel Editieren"
+                <RadioButton Content="Stempel Editieren"                             
                              Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="{Binding StempelEditorGeoeffnet}"
                              Command="{Binding StempelEditierenAufrufenCommand}"
                              TabIndex="1"
                              FocusVisualStyle="{DynamicResource FocusVisual}"

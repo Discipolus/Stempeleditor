@@ -21,6 +21,8 @@ namespace ViewModels
         [ObservableProperty] object currentView;
         [ObservableProperty] IStempelEditierenViewModel stempelEditierenVm;
         [ObservableProperty] IUebersichtViewModel uebersichtVm;
+        [ObservableProperty] private bool uebersichtGeoeffnet;
+        [ObservableProperty] private bool stempelEditorGeoeffnet;
         private readonly IStorageService storage;
         private readonly IXMLConverter.IXMLConverter xmlConverter;
         private List<Stempelverfuegung> stempelverfuegungen;
@@ -59,6 +61,8 @@ namespace ViewModels
         public void UebersichtAufrufen()
         {
             CurrentView = UebersichtVm!;
+            UebersichtGeoeffnet = true;
+            StempelEditorGeoeffnet = false;
             UebersichtVm.updateList(stempelverfuegungen);
         }
 
@@ -66,6 +70,8 @@ namespace ViewModels
         public void StempelEditierenAufrufen() 
         {
             CurrentView = StempelEditierenVm;
+            UebersichtGeoeffnet = false;
+            StempelEditorGeoeffnet = true;
         }
 
         [RelayCommand()]
@@ -81,6 +87,7 @@ namespace ViewModels
                 updateListe(stempelEventArgs.Stempelverfuegung);
                 string stempelXml = xmlConverter.convertToXml(stempelEventArgs.Stempelverfuegung);
                 storage.speicherStempel(stempelXml, stempelEventArgs.Stempelverfuegung.Id, stempelEventArgs.Stempelverfuegung.Name);
+                UebersichtAufrufen();
             }            
         }
         private void updateListe(Stempelverfuegung stempel)
@@ -97,7 +104,7 @@ namespace ViewModels
             if (stempelEventArgs.Stempelverfuegung != null)
             {
                 StempelEditierenVm.fillStempelverfuegung(stempelEventArgs.Stempelverfuegung);
-                CurrentView = StempelEditierenVm;
+                StempelEditierenAufrufen();
             }
         }
     }
