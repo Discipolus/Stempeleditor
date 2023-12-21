@@ -22,7 +22,7 @@ namespace SQLDatabaseConnection
 
         public void speicherStempel(string stempel, Guid guid, string stempelName)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public string? ladeStempel(Guid guid)
